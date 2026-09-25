@@ -16,3 +16,7 @@ The gateway authenticates through identity, forwards authenticated requests to t
 - [archives](https://github.com/sainath1204/cr-multirepo-lab-archives)
 - [redirects](https://github.com/sainath1204/cr-multirepo-lab-redirects)
 - [search](https://github.com/sainath1204/cr-multirepo-lab-search)
+
+## Version-bound fixture topology
+
+`compose.yaml` binds every gateway service URL to a build from a full commit SHA of the corresponding public fixture repository. Only the gateway has a loopback host port; the service network is internal. This is a static test definition, not evidence of a deployed environment. The search image initializes its synthetic database during build.

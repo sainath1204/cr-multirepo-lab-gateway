@@ -1,0 +1,116 @@
+# Synthetic local-only wiring; never deploy this vulnerable lab publicly.
+{
+  "name": "cr-multirepo-lab",
+  "services": {
+    "gateway": {
+      "build": {
+        "context": "."
+      },
+      "ports": [
+        "127.0.0.1:18080:5000"
+      ],
+      "environment": {
+        "ARCHIVES_URL": "http://archives:5000",
+        "FETCH_URL": "http://fetch:5000",
+        "FILES_URL": "http://files:5000",
+        "IDENTITY_URL": "http://identity:5000",
+        "JOBS_URL": "http://jobs:5000",
+        "ORDERS_URL": "http://orders:5000",
+        "REDIRECTS_URL": "http://redirects:5000",
+        "SEARCH_URL": "http://search:5000",
+        "TEMPLATES_URL": "http://templates:5000"
+      },
+      "depends_on": [
+        "archives",
+        "fetch",
+        "files",
+        "identity",
+        "jobs",
+        "orders",
+        "redirects",
+        "search",
+        "templates"
+      ],
+      "networks": [
+        "lab"
+      ]
+    },
+    "archives": {
+      "build": {
+        "context": "https://github.com/sainath1204/cr-multirepo-lab-archives.git#eafed076d9c27c6fe86060b65d7b94bb1cc0bfe9"
+      },
+      "networks": [
+        "lab"
+      ]
+    },
+    "fetch": {
+      "build": {
+        "context": "https://github.com/sainath1204/cr-multirepo-lab-fetch.git#17e970206d801f8b8ce96a8a69798fd9a456f89f"
+      },
+      "networks": [
+        "lab"
+      ]
+    },
+    "files": {
+      "build": {
+        "context": "https://github.com/sainath1204/cr-multirepo-lab-files.git#b389edf310ad495a8c06ad95f077941437325f88"
+      },
+      "networks": [
+        "lab"
+      ]
+    },
+    "identity": {
+      "build": {
+        "context": "https://github.com/sainath1204/cr-multirepo-lab-identity.git#913951fd83630af9d7732a3315fe6ed0cefd8336"
+      },
+      "networks": [
+        "lab"
+      ]
+    },
+    "jobs": {
+      "build": {
+        "context": "https://github.com/sainath1204/cr-multirepo-lab-jobs.git#793888919fb9b0fcf1a940b71904cfd8963094cd"
+      },
+      "networks": [
+        "lab"
+      ]
+    },
+    "orders": {
+      "build": {
+        "context": "https://github.com/sainath1204/cr-multirepo-lab-orders.git#7375f05e369682005b74f859100ff725bd985910"
+      },
+      "networks": [
+        "lab"
+      ]
+    },
+    "redirects": {
+      "build": {
+        "context": "https://github.com/sainath1204/cr-multirepo-lab-redirects.git#7d6959fc659b4db7102f5d211229bbb746478b29"
+      },
+      "networks": [
+        "lab"
+      ]
+    },
+    "search": {
+      "build": {
+        "context": "https://github.com/sainath1204/cr-multirepo-lab-search.git#ad3f3663a6fb28be8ea56682a12e9c10f12e34c5"
+      },
+      "networks": [
+        "lab"
+      ]
+    },
+    "templates": {
+      "build": {
+        "context": "https://github.com/sainath1204/cr-multirepo-lab-templates.git#f8bd6bd4b67d039f9326228fdfc7b3130056626c"
+      },
+      "networks": [
+        "lab"
+      ]
+    }
+  },
+  "networks": {
+    "lab": {
+      "internal": true
+    }
+  }
+}
